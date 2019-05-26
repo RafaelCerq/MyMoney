@@ -9,31 +9,37 @@ public class LancamentoFilter {
 	private String descricao;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate dataVenciemntoDe;
+	private LocalDate dataVencimentoDe;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate dataVenciemntoAte;
-	
-	
+	private LocalDate dataVencimentoAte;
+
 	public String getDescricao() {
 		return descricao;
 	}
+
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public LocalDate getDataVenciemntoDe() {
-		return dataVenciemntoDe;
+
+	public LocalDate getDataVencimentoDe() {
+		return dataVencimentoDe;
 	}
-	public void setDataVenciemntoDe(LocalDate dataVenciemntoDe) {
-		this.dataVenciemntoDe = dataVenciemntoDe;
+
+	public void setDataVencimentoDe(LocalDate dataVencimentoDe) {
+		this.dataVencimentoDe = dataVencimentoDe;
 	}
-	public LocalDate getDataVenciemntoAte() {
-		return dataVenciemntoAte;
+
+	public LocalDate getDataVencimentoAte() {
+		return dataVencimentoAte;
 	}
-	public void setDataVenciemntoAte(LocalDate dataVenciemntoAte) {
-		this.dataVenciemntoAte = dataVenciemntoAte;
+
+	public void setDataVencimentoAte(LocalDate dataVencimentoAte) {
+		this.dataVencimentoAte = dataVencimentoAte;
 	}
 	
+	
+
 	
 	
 	
