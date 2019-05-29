@@ -12,22 +12,22 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
+	//Autenticação Basic
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication()
+		auth.inMemoryAuthentication() //Autenticação com usuário e senha em memória
 			.withUser("admin").password("{noop}admin").roles("ROLE");
 	}
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-				.antMatchers("/categorias").permitAll()
-				.antMatchers(HttpMethod.OPTIONS).permitAll()
-				.anyRequest().authenticated()
-				.and()
-			.httpBasic().and()
-			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-			.csrf().disable();
+				.antMatchers("/categorias").permitAll() //Libera a rota para não utilizar autenticação
+				.anyRequest().authenticated() //Qualquer requisição vai solicitar usuario e senha
+				.and() 
+			.httpBasic().and() //Tipo de autenticação
+			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and() //Não mantem estado (Sem sessão)
+			.csrf().disable(); 
 	}
 	
 }
