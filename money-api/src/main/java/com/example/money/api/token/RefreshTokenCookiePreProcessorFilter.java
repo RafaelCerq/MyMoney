@@ -20,14 +20,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
-public class RefreshTokenPreProcessorFilter implements Filter {
-
-	
+public class RefreshTokenCookiePreProcessorFilter implements Filter {
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-
+		
 		HttpServletRequest req = (HttpServletRequest) request;
 		
 		if ("/oauth/token".equalsIgnoreCase(req.getRequestURI()) 
@@ -39,28 +37,25 @@ public class RefreshTokenPreProcessorFilter implements Filter {
 					req = new MyServletRequestWrapper(req, refreshToken);
 				}
 			}
- 		}
+		}
 		
 		chain.doFilter(req, response);
-		
 	}
 	
 	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {
-		// TODO Auto-generated method stub
+	public void destroy() {
 		
 	}
 
 	@Override
-	public void destroy() {
-		// TODO Auto-generated method stub
+	public void init(FilterConfig arg0) throws ServletException {
 		
 	}
 	
 	static class MyServletRequestWrapper extends HttpServletRequestWrapper {
-		
-		private String refreshToken;
 
+		private String refreshToken;
+		
 		public MyServletRequestWrapper(HttpServletRequest request, String refreshToken) {
 			super(request);
 			this.refreshToken = refreshToken;
@@ -73,7 +68,6 @@ public class RefreshTokenPreProcessorFilter implements Filter {
 			map.setLocked(true);
 			return map;
 		}
-		
 		
 	}
 
